@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detalle del producto - Peresozo">
+    <title>Detalle del Producto - Peresozo</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/Logo_perezoso.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="img/Logo_perezoso.png" alt="Logo Peresozo" height="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="productos.html">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#sobre">Sobre Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#contacto">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <section class="py-3 bg-light">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="productos.html">Productos</a></li>
+                    <li class="breadcrumb-item active" aria-current="page" id="productNameBreadcrumb">Producto</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Detalle del Producto -->
+    <section class="product-detail py-5">
+        <div class="container">
+            <div class="row g-5">
+                <!-- Galería de Imágenes -->
+                <div class="col-lg-6">
+                    <div class="product-gallery">
+                        <!-- Imagen Principal -->
+                        <div class="main-image-container mb-3">
+                            <div class="zoom-container">
+                                <img id="mainImage" src="" alt="Producto" class="img-fluid main-product-image">
+                                <div class="zoom-icon">
+                                    <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
+                                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Miniaturas -->
+                        <div class="thumbnails-container">
+                            <div class="row g-2" id="thumbnailsContainer">
+                                <!-- Se llenarán dinámicamente -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Información del Producto -->
+                <div class="col-lg-6">
+                    <div class="product-info">
+                        <span class="badge bg-primary mb-3" id="productCategory">Dama</span>
+                        <h1 class="product-title mb-3" id="productTitle">Cargando...</h1>
+                        <p class="product-description text-muted mb-4" id="productDescription">
+                            Cargando descripción...
+                        </p>
+                        
+                        <!-- Precio -->
+                        <div class="product-price mb-4">
+                            <h3 class="price-text mb-0">
+                                <span id="productPrice">$00.000</span>
+                            </h3>
+                        </div>
+
+                        <!-- Tallas -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Talla:</label>
+                            <select class="form-select" id="sizeSelect">
+                                <option value="Unica">Única (S/M)</option>
+                            </select>
+                        </div>
+
+                        <!-- Cantidad -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Cantidad:</label>
+                            <div class="quantity-selector d-flex align-items-center">
+                                <button class="btn btn-outline-secondary" id="decreaseQty">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                                    </svg>
+                                </button>
+                                <input type="number" class="form-control text-center mx-2" id="quantityInput" value="1" min="1" max="10" style="max-width: 80px;">
+                                <button class="btn btn-outline-secondary" id="increaseQty">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Botones de Acción -->
+                        <div class="d-grid gap-3 mb-4">
+                            <button class="btn btn-primary btn-lg" id="addToQuoteBtn">
+                                <svg width="20" height="20" fill="white" viewBox="0 0 24 24" class="me-2" style="vertical-align: middle;">
+                                    <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                                </svg>
+                                Agregar a Cotización
+                            </button>
+                            <a href="productos.html" class="btn btn-outline-secondary btn-lg">
+                                <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16" class="me-2" style="vertical-align: middle;">
+                                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                                </svg>
+                                Volver a Productos
+                            </a>
+                        </div>
+
+                        <!-- Características -->
+                        <div class="product-features">
+                            <h5 class="mb-3">Características:</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <svg width="20" height="20" fill="#CB6CE6" viewBox="0 0 16 16" class="me-2">
+                                        <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                                    </svg>
+                                    Material suave y cómodo
+                                </li>
+                                <li class="mb-2">
+                                    <svg width="20" height="20" fill="#CB6CE6" viewBox="0 0 16 16" class="me-2">
+                                        <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                                    </svg>
+                                    Diseño exclusivo
+                                </li>
+                                <li class="mb-2">
+                                    <svg width="20" height="20" fill="#CB6CE6" viewBox="0 0 16 16" class="me-2">
+                                        <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                                    </svg>
+                                    Fácil cuidado y lavado
+                                </li>
+                                <li class="mb-2">
+                                    <svg width="20" height="20" fill="#CB6CE6" viewBox="0 0 16 16" class="me-2">
+                                        <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                                    </svg>
+                                    Ideal para todas las estaciones
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Productos Relacionados -->
+            <div class="related-products mt-5 pt-5 border-top">
+                <h2 class="text-center mb-5">Productos Relacionados</h2>
+                <div class="row g-4" id="relatedProductsContainer">
+                    <!-- Se llenarán dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Zoom de Imagen -->
+    <div class="modal fade" id="imageZoomModal" tabindex="-1" aria-labelledby="imageZoomModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content bg-transparent border-0">
+                <div class="modal-body p-0 position-relative">
+                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Cerrar" style="z-index: 10;"></button>
+                    <img id="zoomedImage" src="" alt="Imagen ampliada" class="img-fluid w-100">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <img src="img/Logo_perezoso.png" alt="Logo Peresozo" height="60" class="mb-3">
+                    <p class="text-muted">Pijamas cómodas para toda la familia. Dulces sueños con Peresozo.</p>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-3">Enlaces Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-muted text-decoration-none">Inicio</a></li>
+                        <li><a href="productos.html" class="text-muted text-decoration-none">Productos</a></li>
+                        <li><a href="index.html#sobre" class="text-muted text-decoration-none">Sobre Nosotros</a></li>
+                        <li><a href="index.html#contacto" class="text-muted text-decoration-none">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Síguenos</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-muted me-3" aria-label="Instagram">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-muted" aria-label="WhatsApp">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center text-muted">
+                <p class="mb-0">&copy; 2024 Peresozo. Todos los derechos reservados. Hecho con 💜</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón flotante de cotización -->
+    <button id="quoteCartBtn" class="quote-cart-btn" aria-label="Abrir carro de cotización">
+        <svg width="28" height="28" fill="white" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        <span id="cartCounter" class="cart-counter">0</span>
+    </button>
+
+    <!-- Toast para notificaciones -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
+        <div id="addToCartToast" class="toast" role="alert">
+            <div class="toast-header bg-primary text-white">
+                <strong class="me-auto">✓ Producto agregado</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">
+                El producto ha sido agregado a tu cotización.
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal del Carro de Cotización -->
+    <div class="modal fade" id="quoteCartModal" tabindex="-1" aria-labelledby="quoteCartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="quoteCartModalLabel">
+                        <svg width="24" height="24" fill="white" viewBox="0 0 24 24" class="me-2" style="vertical-align: middle;">
+                            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                        </svg>
+                        Mi Cotización
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="cartItemsList"></div>
+                    <div id="emptyCartMessage" class="text-center py-4" style="display: none;">
+                        <svg width="80" height="80" fill="#CB6CE6" viewBox="0 0 24 24" class="mb-3">
+                            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                        </svg>
+                        <p class="text-muted">Tu carro está vacío<br>¡Agrega algunos productos!</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="sendQuoteBtn">
+                        <svg width="20" height="20" fill="white" viewBox="0 0 24 24" style="vertical-align: middle;" class="me-1">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                        Enviar por WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Base de datos de productos (misma estructura que en productos.html)
+        const productsDatabase = {
+            'pijama-capibara': {
+                name: 'Pijama Navidad Capibara-Short',
+                category: 'Dama',
+                price: '$45.000',
+                description: 'Pijama de dos piezas en Piel durazno. Con estampado navideño de capibara. Perfecta para las noches de diciembre, súper suave y cómoda.',
+                sizes: ['Unica (S/M)'],
+                images: [
+                    'img/pijama_capibara_navidad.png',
+                    'img/pijama_capibara_navidad.png', // Agregar más imágenes si están disponibles
+                ],
+                relatedProducts: ['pijama-stitch', 'pijama-snoppy']
+            },
+            'pijama-stitch': {
+                name: 'Pijama Navidad Stitch-Short',
+                category: 'Dama',
+                price: '$45.000',
+                description: 'Pijama de dos piezas en Piel durazno. Con estampado navideño de Stitch. Diseño divertido y moderno para descansar con estilo.',
+                sizes: ['Unica (S/M)'],
+                images: [
+                    'img/pijama_navideña_stitch.png',
+                    'img/pijama_navideña_stitch.png',
+                ],
+                relatedProducts: ['pijama-capibara', 'pijama-grinch']
+            },
+            'pijama-snoppy': {
+                name: 'Pijama Navidad Snoppy-Short',
+                category: 'Dama',
+                price: '$45.000',
+                description: 'Pijama de dos piezas en Piel durazno. Con estampado navideño de Snoppy. Clásico y tierno diseño para las fiestas.',
+                sizes: ['Unica (S/M)'],
+                images: [
+                    'img/Navidad_snoppy_short.png',
+                    'img/Navidad_snoppy_short.png',
+                ],
+                relatedProducts: ['pijama-capibara', 'pijama-polar']
+            },
+            'pijama-grinch': {
+                name: 'Pijama Navidad Grinch-Pantalon',
+                category: 'Dama',
+                price: '$59.000',
+                description: 'Pijama de dos piezas en Piel durazno. Con estampado navideño de Grinch. Incluye pantalón largo para mayor comodidad.',
+                sizes: ['Unica (S/M)'],
+                images: [
+                    'img/Navidad_grinch_pantalon.png',
+                    'img/Navidad_grinch_pantalon.png',
+                ],
+                relatedProducts: ['pijama-stitch', 'pijama-polar']
+            },
+            'pijama-polar': {
+                name: 'Pijama Navidad Polar-Short',
+                category: 'Dama',
+                price: '$45.000',
+                description: 'Pijama de dos piezas en Piel durazno. Con estampado navideño de Polar. Diseño invernal perfecto para la temporada.',
+                sizes: ['Unica (S/M)'],
+                images: [
+                    'img/Navidad_Polar_short.png',
+                    'img/Navidad_Polar_short.png',
+                ],
+                relatedProducts: ['pijama-snoppy', 'pijama-capibara']
+            }
+        };
+
+        // Obtener ID del producto desde URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id') || 'pijama-capibara';
+        const product = productsDatabase[productId];
+
+        // Cargar información del producto
+        function loadProductInfo() {
+            if (!product) {
+                window.location.href = 'productos.html';
+                return;
+            }
+
+            document.getElementById('productTitle').textContent = product.name;
+            document.getElementById('productNameBreadcrumb').textContent = product.name;
+            document.getElementById('productCategory').textContent = product.category;
+            document.getElementById('productDescription').textContent = product.description;
+            document.getElementById('productPrice').textContent = product.price;
+
+            // Cargar selector de tallas
+            const sizeSelect = document.getElementById('sizeSelect');
+            sizeSelect.innerHTML = product.sizes.map(size => 
+                `<option value="${size}">${size}</option>`
+            ).join('');
+
+            // Cargar imágenes
+            loadProductImages();
+
+            // Cargar productos relacionados
+            loadRelatedProducts();
+        }
+
+        // Cargar imágenes del producto
+        function loadProductImages() {
+            const mainImage = document.getElementById('mainImage');
+            const thumbnailsContainer = document.getElementById('thumbnailsContainer');
+
+            // Imagen principal
+            mainImage.src = product.images[0];
+            mainImage.alt = product.name;
+
+            // Miniaturas
+            thumbnailsContainer.innerHTML = product.images.map((img, index) => `
+                <div class="col-3">
+                    <img src="${img}" 
+                         alt="${product.name} - Vista ${index + 1}" 
+                         class="img-fluid thumbnail-image ${index === 0 ? 'active' : ''}" 
+                         data-image="${img}">
+                </div>
+            `).join('');
+
+            // Event listeners para miniaturas
+            document.querySelectorAll('.thumbnail-image').forEach(thumb => {
+                thumb.addEventListener('click', function() {
+                    document.querySelectorAll('.thumbnail-image').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    mainImage.src = this.getAttribute('data-image');
+                });
+            });
+
+            // Zoom de imagen
+            mainImage.addEventListener('click', function() {
+                document.getElementById('zoomedImage').src = this.src;
+                const modal = new bootstrap.Modal(document.getElementById('imageZoomModal'));
+                modal.show();
+            });
+        }
+
+        // Cargar productos relacionados
+        function loadRelatedProducts() {
+            const container = document.getElementById('relatedProductsContainer');
+            const relatedIds = product.relatedProducts || [];
+
+            container.innerHTML = relatedIds.slice(0, 3).map(id => {
+                const relatedProduct = productsDatabase[id];
+                if (!relatedProduct) return '';
+
+                return `
+                    <div class="col-md-4">
+                        <div class="card product-card h-100">
+                            <div class="product-image-container" style="cursor: pointer;" onclick="window.location.href='producto-detalle.html?id=${id}'">
+                                <img src="${relatedProduct.images[0]}" alt="${relatedProduct.name}" class="img-fluid">
+                            </div>
+                            <div class="card-body">
+                                <span class="badge bg-primary mb-2">${relatedProduct.category}</span>
+                                <h5 class="card-title">${relatedProduct.name}</h5>
+                                <p class="price-text mb-3">Precio: <strong>${relatedProduct.price}</strong></p>
+                                <a href="producto-detalle.html?id=${id}" class="btn btn-outline-primary w-100">Ver Detalles</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Control de cantidad
+        document.getElementById('decreaseQty').addEventListener('click', function() {
+            const input = document.getElementById('quantityInput');
+            const value = parseInt(input.value);
+            if (value > 1) {
+                input.value = value - 1;
+            }
+        });
+
+        document.getElementById('increaseQty').addEventListener('click', function() {
+            const input = document.getElementById('quantityInput');
+            const value = parseInt(input.value);
+            if (value < 10) {
+                input.value = value + 1;
+            }
+        });
+
+        // Agregar a cotización
+        document.getElementById('addToQuoteBtn').addEventListener('click', function() {
+            const size = document.getElementById('sizeSelect').value;
+            const quantity = parseInt(document.getElementById('quantityInput').value);
+
+            addToCart(product.name, size, quantity);
+        });
+
+        // Funciones del carrito
+        function getCart() {
+            return JSON.parse(localStorage.getItem('quoteCart') || '[]');
+        }
+
+        function saveCart(cart) {
+            localStorage.setItem('quoteCart', JSON.stringify(cart));
+            updateCartCounter();
+        }
+
+        function updateCartCounter() {
+            const cart = getCart();
+            const counter = document.getElementById('cartCounter');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            counter.textContent = totalItems;
+            counter.style.display = totalItems > 0 ? 'flex' : 'none';
+        }
+
+        function addToCart(name, size, quantity) {
+            const cart = getCart();
+            const existingItem = cart.find(item => item.name === name && item.size === size);
+
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({ name, size, quantity });
+            }
+
+            saveCart(cart);
+            showToast();
+        }
+
+        function showToast() {
+            const toastEl = document.getElementById('addToCartToast');
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        }
+
+        function renderCartItems() {
+            const cart = getCart();
+            const cartList = document.getElementById('cartItemsList');
+            const emptyMessage = document.getElementById('emptyCartMessage');
+            
+            if (cart.length === 0) {
+                cartList.innerHTML = '';
+                emptyMessage.style.display = 'block';
+                return;
+            }
+            
+            emptyMessage.style.display = 'none';
+            cartList.innerHTML = cart.map((item, index) => `
+                <div class="cart-item mb-3 p-3 border rounded">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1">${item.name}</h6>
+                            <p class="text-muted mb-1 small">Talla: ${item.size}</p>
+                            <p class="text-muted mb-0 small">Cantidad: ${item.quantity}</p>
+                        </div>
+                        <button class="btn btn-sm btn-outline-danger delete-item" data-index="${index}">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            document.querySelectorAll('.delete-item').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    removeFromCart(index);
+                });
+            });
+        }
+
+        function removeFromCart(index) {
+            const cart = getCart();
+            cart.splice(index, 1);
+            localStorage.setItem('quoteCart', JSON.stringify(cart));
+            updateCartCounter();
+            renderCartItems();
+        }
+
+        document.getElementById('quoteCartBtn').addEventListener('click', function() {
+            renderCartItems();
+            const modal = new bootstrap.Modal(document.getElementById('quoteCartModal'));
+            modal.show();
+        });
+
+        document.getElementById('sendQuoteBtn').addEventListener('click', function() {
+            const cart = getCart();
+            
+            if (cart.length === 0) {
+                alert('Tu carro de cotización está vacío. ¡Agrega algunos productos primero!');
+                return;
+            }
+
+            let message = 'Hola, quiero cotizar estos productos: ';
+            cart.forEach((item, index) => {
+                message += `${index + 1}) ${item.name} - Talla ${item.size} x${item.quantity}`;
+                if (index < cart.length - 1) message += '; ';
+            });
+            message += '. ¿Me indican disponibilidad y precio? Gracias.';
+
+            const phoneNumber = '+573022754591';
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        });
+
+        // Inicializar
+        loadProductInfo();
+        updateCartCounter();
+    </script>
+
+</body>
+</html>
