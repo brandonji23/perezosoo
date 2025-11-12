@@ -18,6 +18,9 @@
 #sobre {
     padding: 4rem 0;
 }
+.text-primary2{
+    color: red;
+}
 
 .about-image-placeholder {
     border-radius: var(--border-radius);
@@ -111,6 +114,16 @@ p {
    ============================================ */
 .btn-primary {
     background: var(--color-primary);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(203, 108, 230, 0.3);
+}
+.btn-second {
+    background: red;
+    color: white;
     border: none;
     border-radius: var(--border-radius);
     padding: 0.75rem 2rem;
